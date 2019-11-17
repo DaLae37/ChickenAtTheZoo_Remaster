@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class StartSceneManager : MonoBehaviour
 {
     private const int widthRatio = 19;
@@ -20,5 +20,10 @@ public class StartSceneManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("tutorial1");
     }
 }

@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
-{   
+{
     public Sprite[] playerSprites = new Sprite[4];
     public GameObject addCharacterObject;
     public GameObject addCharacters;
@@ -14,15 +15,21 @@ public class Player : MonoBehaviour
     private bool isJump;
     private bool isLeft;
     private bool usedSkill;
+    private bool isRocking;
     private bool onNest;
+    private bool doubleTouch;
+    private bool doubleToOne; //더블 터치에서 하나로 간거 판별
+
 
     public int maxAddCharacterCount = 5;
-    public int jumpLength = 5;
+    public float jumpLength = 5;
     public int moveSpeed = 3;
-    private int characterType;//1 = double jump, 2 = rock, 3 = strecth, 4 = reverse
+    private int characterType;//1 = strecth, 2 = double jump, 3 = rock, 4 = reverse
     private int addCharacterCount;
 
-    float addCharacterTimer; //3전용
+    float addCharacterTimer; //1전용
+    float strecthTime; //1 스킬 사용 시간
+    private float doubleTouchTimer; //더블 터치 전용
 
     // Start is called before the first frame update
     private void Start()
@@ -38,6 +45,8 @@ public class Player : MonoBehaviour
 
         addCharacterTimer = 0f;
 
+        strecthTime = 0.5f;
+
         characterType = Convert.ToInt32(gameObject.name.Split('r')[1]);
         rb = GetComponent<Rigidbody2D>();        
 
@@ -45,19 +54,19 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = playerSprites[characterType - 1];
     }
 
-    // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         if (isSelected)
         {
             Move();
         }
+
     }
 
     private void Move()
     {
 #if UNITY_EDITOR
-        if (Input.anyKeyDown && usedSkill)
+        if (Input.anyKeyDown && usedSkill && !Input.GetMouseButtonDown(0))
         {
             ReleasingSkill();
         }
@@ -77,22 +86,84 @@ public class Player : MonoBehaviour
         {
             UsingSkill();
         }
-        if(Input.GetKeyUp(KeyCode.Q) && characterType == 3)
+        if(Input.GetKeyUp(KeyCode.Q) && characterType == 1)
         {
             usedSkill = true;
         }
 #endif
 #if UNITY_ANDROID
-        for (int i = 0; i < Input.touchCount; i++)
+        if (Input.touchCount > 0 && usedSkill)
         {
-            if (Input.touchCount == 1)
+            ReleasingSkill();
+        }
+        if (Input.touchCount == 1)
+        {
+            if (EventSystem.current.IsPointerOverGameObject(0) == false)
             {
-                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                doubleTouchTimer += Time.deltaTime;
+                Touch touch = Input.GetTouch(0);
+                Vector2 touchPos = touch.position;
+                if (touch.phase != TouchPhase.Ended)
                 {
-
+                    if (touchPos.x < Screen.width / 2)
+                    {
+                        SideMoving(true);
+                    }
+                    else
+                    {
+                        SideMoving(false);
+                    }
+                }
+                if (doubleToOne && characterType != 1)
+                {
+                    usedSkill = true;
+                    doubleToOne = false;
+                    doubleTouch = false;
                 }
             }
-
+        }
+        else if (Input.touchCount == 2)
+        {
+            doubleToOne = true;
+            if (EventSystem.current.IsPointerOverGameObject(0) == false && EventSystem.current.IsPointerOverGameObject(1) == false)
+            {
+                Touch touch1 = Input.GetTouch(0);
+                Touch touch2 = Input.GetTouch(1);
+                if (doubleTouchTimer < 0.1f)
+                {
+                    if (touch2.phase == TouchPhase.Began)
+                    {
+                        doubleTouchTimer = 0f;
+                        doubleTouch = true;
+                    }
+                }
+                else
+                {
+                    doubleTouchTimer = 0f;
+                }
+                if (!doubleTouch)
+                {
+                    Vector3 touchPos1 = touch1.position;
+                    Vector3 touchPos2 = touch2.position;
+                    if ((touchPos1.x < Screen.width / 2) && (touchPos2.x >= Screen.width / 2))
+                    {
+                        SideMoving(true);
+                        if (!isJump && (touch2.phase == TouchPhase.Began || touch1.phase == TouchPhase.Began))
+                            Jump();
+                    }
+                    else if (((touchPos1.x >= Screen.width / 2) && (touchPos2.x < Screen.width / 2)))
+                    {
+                        SideMoving(false);
+                        if (!isJump && (touch2.phase == TouchPhase.Began || touch1.phase == TouchPhase.Began))
+                            Jump();
+                    }
+                }
+                else
+                {
+                    if (!usedSkill)
+                        UsingSkill();
+                }
+            }
         }
 #endif
     }
@@ -113,31 +184,34 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(0, jumpLength, 0);
     }
 
+   
     public void UsingSkill()
     {
         switch (characterType)
         {
-            case 1:
+            case 2:
                 Jump();
                 usedSkill = true;
                 break;
-            case 2:
+            case 3:
                 rb.velocity = new Vector3(0, 0, 0);
                 rb.gravityScale = 0;
+                rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
                 usedSkill = true;
                 break;
-            case 3:
+            case 1:
                 if (onNest)
                 {
                     addCharacterTimer += Time.deltaTime;
                     rb.gravityScale = 0;
+                    rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
 
-                    if (addCharacterTimer >= 1) //1초마다 1개
+                    if (addCharacterTimer >= strecthTime) //t초마다 1개
                     {
                         addCharacterCount += 1;
-                        if (addCharacterCount <= maxAddCharacterCount) //5개 최대
+                        if (addCharacterCount <= maxAddCharacterCount) //최대
                         {
-                            addCharacterTimer -= 1;
+                            addCharacterTimer -= strecthTime;
                             GameObject g = Instantiate(addCharacterObject); //addCharacters 자식등록
                             g.transform.position = transform.position;
                             g.transform.rotation = transform.rotation;
@@ -156,12 +230,18 @@ public class Player : MonoBehaviour
     public void ReleasingSkill()
     {
         usedSkill = isJump;
-        rb.gravityScale = 1;
         switch (characterType)
         {
-            case 3:
+            case 1 :
                 DestroyChild();
+                rb.gravityScale = 1;
+                rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
                 break;
+            case 3:
+                rb.gravityScale = 1;
+                rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+                break;
+
         }
     }
 
@@ -189,10 +269,11 @@ public class Player : MonoBehaviour
         return isSelected;
     }
 
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         string collTag = collision.gameObject.tag;
-        if (collTag.Equals("Ground") || collTag.Equals("Player") || collTag.Equals("Nest"))
+        if (collTag.Equals("Ground") || collTag.Equals("Player") || collTag.Equals("Button") || collTag.Equals("Nest"))
         {
             isJump = false;
             if (collTag.Equals("Nest"))
