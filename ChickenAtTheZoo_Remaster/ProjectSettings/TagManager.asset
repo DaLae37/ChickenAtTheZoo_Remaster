@@ -8,6 +8,9 @@ TagManager:
   - Nest
   - block
   - Button
+  - Stone
+  - Enemy
+  - Lion
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Press
   - 
   - 
   - 
