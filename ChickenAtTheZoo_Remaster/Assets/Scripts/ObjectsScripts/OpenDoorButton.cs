@@ -25,6 +25,7 @@ public class OpenDoorButton : MonoBehaviour
                 (isReverse && collision.gameObject.transform.position.y < gameObject.transform.position.y ))
             {
                 //change door sprite & delete door collider
+                SoundManager.Instance.PlayEffectSound("openDoor");
                 door.transform.Translate(new Vector3(0.8f, 0, 0));
                 door.GetComponent<SpriteRenderer>().sprite = openDoor;
                 Destroy(door.GetComponent<BoxCollider2D>());

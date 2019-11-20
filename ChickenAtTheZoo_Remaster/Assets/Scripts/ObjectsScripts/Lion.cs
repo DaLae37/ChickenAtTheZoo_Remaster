@@ -46,6 +46,7 @@ public class Lion : MonoBehaviour
                 life--;
                 if (life == 0)
                 {
+                    SoundManager.Instance.PlayEffectSound("lionDead");
                     Destroy(gameObject);
                     if (gameObject.name == "boss")
                     {

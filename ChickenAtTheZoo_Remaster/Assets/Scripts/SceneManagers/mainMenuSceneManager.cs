@@ -31,16 +31,18 @@ public class mainMenuSceneManager : MonoBehaviour
     public void GameStartButtonDown()
     {
         gameStartButton.image.sprite = GSB;
+        SoundManager.Instance.PlayEffectSound("buttonClick");
     }
 
     public void MapEditButtonDown()
     {
         mapEditButton.image.sprite = MEB;
-
+        SoundManager.Instance.PlayEffectSound("buttonClick");
     }
 
     public void SettingButtonDown()
     {
         settingButton.image.sprite = SB;
+        SoundManager.Instance.PlayEffectSound("buttonClick");
     }
 }

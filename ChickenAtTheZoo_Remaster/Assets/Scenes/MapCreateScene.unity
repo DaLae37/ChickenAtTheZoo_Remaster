@@ -1598,7 +1598,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 12ceea0939969e646aec4e376e8acbbc, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -1852,7 +1852,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4f7c8849624aa8649b77e9ebf9c256d9, type: 3}
   - {fileID: 21300000, guid: a8f5a23915a15ac4a9dfc3f3f83aaebd, type: 3}
   - {fileID: 21300000, guid: c6ede6f3a4bb48b41b83bf112cbce13a, type: 3}
-  - {fileID: 21300000, guid: c42e633aca82e3d439432e26b24ab245, type: 3}
+  - {fileID: 21300000, guid: 306d2616e8065d148bc09ab215e13de1, type: 3}
   buttonArray:
   - {fileID: 731605399}
   - {fileID: 712498152}
@@ -2707,7 +2707,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 12ceea0939969e646aec4e376e8acbbc, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -19600,7 +19600,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c42e633aca82e3d439432e26b24ab245, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 306d2616e8065d148bc09ab215e13de1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -38262,7 +38262,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 12ceea0939969e646aec4e376e8acbbc, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1

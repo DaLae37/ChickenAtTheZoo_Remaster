@@ -38,4 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/settingScene.unity
     guid: b0bf056f70ff7e74dbd5e27b5e5b3c64
+  - enabled: 1
+    path: Assets/Scenes/MapCreateScene.unity
+    guid: f47c049514109c549a03a400ed65c9ce
+  - enabled: 1
+    path: Assets/Scenes/MapMakeScene.unity
+    guid: 09769616398346249bf8a418a189c305
   m_configObjects: {}

@@ -69,6 +69,7 @@ public class SceneChanger : MonoBehaviour
         string collTag = collision.gameObject.tag;
         if (collTag.Equals("Player"))
         {
+            SoundManager.Instance.PlayEffectSound("portal");
             Time.timeScale = 0;
             clearPanel.SetActive(true);
 

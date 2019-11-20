@@ -13,7 +13,7 @@ public class StartSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SoundManager.Instance.PlayBackgroundSound("start_main_BGM", true);
     }
 
     // Update is called once per frame
@@ -22,7 +22,6 @@ public class StartSceneManager : MonoBehaviour
         if (Input.anyKeyDown)
         {
             SceneManager.LoadScene("mainMenuScene");
-
         }
         
     }

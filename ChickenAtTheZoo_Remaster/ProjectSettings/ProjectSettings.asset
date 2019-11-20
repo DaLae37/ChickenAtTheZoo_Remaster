@@ -245,7 +245,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: "D:/ROUN/1. KHU/2019_KHU_SWCON_1/7. \uC18C\uD504\uD2B8\uC6E8\uC5B4\uD398\uC2A4\uD2F0\uBC8C/ChickenAtTheZoo_Remaster/Keystore/dalae37.keystore"
+  AndroidKeystoreName: D:/Project/Unity/ChickenAtTheZoo_Remaster/dalae37.keystore
   AndroidKeyaliasName: chickenatthezoo_remaster
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

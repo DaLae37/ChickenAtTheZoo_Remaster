@@ -100,6 +100,8 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
+        Time.timeScale = 1;
+        SoundManager.Instance.PlayEffectSound("start");
     }
 
 
@@ -161,6 +163,7 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerChange1()
     {
+        SoundManager.Instance.PlayEffectSound("characterChange");
         players[playerIndex].setIsSelected(false);
         playerIndex=0;
         players[0].setIsSelected(true);
@@ -170,6 +173,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void PlayerChange2()
     {
+        SoundManager.Instance.PlayEffectSound("characterChange");
         players[playerIndex].setIsSelected(false);
         playerIndex = 1;
         players[1].setIsSelected(true);
@@ -178,6 +182,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void PlayerChange3()
     {
+        SoundManager.Instance.PlayEffectSound("characterChange");
         players[playerIndex].setIsSelected(false);
         playerIndex = 2;
         players[2].setIsSelected(true);
@@ -186,6 +191,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void PlayerChange4()
     {
+        SoundManager.Instance.PlayEffectSound("characterChange");
         players[playerIndex].setIsSelected(false);
         playerIndex = 3;
         players[3].setIsSelected(true);
@@ -227,10 +233,12 @@ public class PlayerManager : MonoBehaviour
     }
     public void JumpButtonDown()
     {
+        SoundManager.Instance.PlayEffectSound("jump");
         players[playerIndex].JumpButtonDown();
     }
     public void SkillButtonDown()
     {
+        SoundManager.Instance.PlayEffectSound("skill");
         players[playerIndex].SkillButtonDown();
     }
     public void SkillButtonUp()
@@ -240,29 +248,35 @@ public class PlayerManager : MonoBehaviour
 
     public void StopButtonDown()
     {
+        SoundManager.Instance.PlayEffectSound("buttonClick");
         StopGame();
         stopPanel.SetActive(true);
     }
     public void StartButtonDown()
     {
+        SoundManager.Instance.PlayEffectSound("buttonClick");
         StartGame();
     }
     public void ReStartButtonDown()
     {
+        SoundManager.Instance.PlayEffectSound("buttonClick");
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void GoMenuButtonDown()
     {
+        SoundManager.Instance.PlayEffectSound("buttonClick");
         Time.timeScale = 1;
         SceneManager.LoadScene("mainMenuScene");
     }
     public void DieReStartButton()
     {
+        SoundManager.Instance.PlayEffectSound("buttonClick");
         dieReButton.image.sprite = RSB;
     }
     public void DieGoMenuButton()
     {
+        SoundManager.Instance.PlayEffectSound("buttonClick");
         dieMenuButton.image.sprite = MB;
     }
 

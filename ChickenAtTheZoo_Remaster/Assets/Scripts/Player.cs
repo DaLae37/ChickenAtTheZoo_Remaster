@@ -504,13 +504,14 @@ public class Player : MonoBehaviour
 
         if (collTag.Equals("Enemy"))
         {
+            SoundManager.Instance.PlayEffectSound("characterDead");
             isDead = true;
         }
 
         if (collTag.Equals("Ground") || collTag.Equals("Player") || collTag.Equals("Button") || collTag.Equals("Nest"))
         {
+            SoundManager.Instance.PlayEffectSound("collisionGround");
             isJump = false;
-
 
             if (usedSkill && collision.transform.name=="Player1" && isStrecthed)
             {
