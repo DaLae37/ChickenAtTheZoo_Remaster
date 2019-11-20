@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "952671636398",
+    "firebase_url": "https://chickenatthezoo.firebaseio.com",
+    "project_id": "chickenatthezoo",
+    "storage_bucket": "chickenatthezoo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952671636398:android:520ab16990abd99675963f",
+        "android_client_info": {
+          "package_name": "com.dalae37.chicken"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952671636398-tlv36llav9b3bdr56ncjvujfr5m1heu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfMxxWBes7whKHO8e_8r7P8DcUcn50huE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952671636398-tlv36llav9b3bdr56ncjvujfr5m1heu6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

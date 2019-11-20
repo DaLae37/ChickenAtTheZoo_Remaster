@@ -21,11 +21,12 @@ public class mainMenuSceneManager : MonoBehaviour
 
     public void MapEditButton()
     {
-        
+        SceneManager.LoadScene("MapEditScene");
     }
 
     public void SettingButton()
     {
+        SceneManager.LoadScene("settingScene");
     }
     public void GameStartButtonDown()
     {
