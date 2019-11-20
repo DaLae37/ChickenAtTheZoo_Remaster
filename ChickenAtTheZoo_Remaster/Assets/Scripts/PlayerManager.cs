@@ -100,7 +100,6 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        Time.timeScale = 1;
     }
 
 
@@ -250,10 +249,12 @@ public class PlayerManager : MonoBehaviour
     }
     public void ReStartButtonDown()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void GoMenuButtonDown()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("mainMenuScene");
     }
     public void DieReStartButton()

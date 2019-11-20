@@ -33,11 +33,13 @@ public class SceneChanger : MonoBehaviour
     
     public void StageButtonDown()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("selectStageScene");
     }
 
     public void ChangeScene()
     {
+        Time.timeScale = 1;
         switch (SceneManager.GetActiveScene().name)
         {
             case "tutorial1":
